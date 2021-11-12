@@ -9,9 +9,7 @@ const Posts = () => {
       fetch('https://posts_app.nehaagarwal121.workers.dev/posts'
         ,{
         headers : { 
-          'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'User-Agent': 'LocalTestSystem'
         }
         }
       )
