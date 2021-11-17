@@ -4,41 +4,39 @@ const Post = props => {
   const [post, setPost] = useState(props.post)
 
   const submit = e => {
+    console.log(post)
     e.preventDefault()
     fetch('https://posts_app.nehaagarwal121.workers.dev/posts', {
       method: 'POST',
-      body: JSON.stringify({ post }),
-      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(post),
+      headers: { "Content-Type": "application/json" , "Accept" : "text/html"},
     })
       .then(res => res.text())
   }
 
   return (
     <form onSubmit={submit}>
+      <label>Title :-</label>
       <input
         type="text"
-        name="post[title]"
-        value={post.title}
+        name="post[title]"      
         onChange={e => setPost({ ...post, title: e.target.value })}
       />
-      {post.errors.title && <p>{post.errors.title}</p>}
-
+      <br />
+      <label>Username :-</label>
       <input
         type="text"
         name="post[username]"
-        value={post.username}
         onChange={e => setPost({ ...post, username: e.target.value })}
       />
-      {post.errors.username && <p>{post.errors.username}</p>}
-
+      <br />
+      <label>Content :-</label>
       <input
         type="text"
         name="post[content]"
-        value={post.content}
         onChange={e => setPost({ ...post, content: e.target.value })}
       />
-      {post.errors.content && <p>{post.errors.content}</p>}
-
+      <br />
       <input type="submit" name="Create Post" />
     </form>
   )
